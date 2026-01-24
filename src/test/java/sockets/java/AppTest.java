@@ -1,4 +1,4 @@
-package com.spain.league;
+package sockets.java;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
