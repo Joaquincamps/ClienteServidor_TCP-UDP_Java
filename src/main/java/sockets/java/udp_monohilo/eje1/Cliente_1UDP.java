@@ -21,15 +21,26 @@ public class Cliente_1UDP {
                     InputStreamReader(System.in));
 
             String cad;
-            cad = br.readLine();
+            while (true) {
 
-            byte[] mensajeByte = cad.getBytes();
-            DatagramPacket peticion = new DatagramPacket(
-                    mensajeByte, cad.length(), host, PUERTO
-            );
+                cad = br.readLine();
+                if (cad.equalsIgnoreCase("salir")) break;
+                byte[] mensajeByte = cad.getBytes();
+                DatagramPacket peticion = new DatagramPacket(
+                        mensajeByte, cad.length(), host, PUERTO
+                );
 
-            socketUDP.send(peticion);
+                socketUDP.send(peticion);
 
+
+                byte[] bufer = new byte[10000];
+                DatagramPacket mensaje = new DatagramPacket(bufer, bufer.length);
+                socketUDP.receive(mensaje);
+
+                System.out.println("Respuesta del servidor:" +
+                        new String(mensaje.getData(), 0,
+                                mensaje.getLength()));
+            }
         } catch (Exception e) {
             System.out.println("Error al uniciar servidor" + e.getMessage());
         }

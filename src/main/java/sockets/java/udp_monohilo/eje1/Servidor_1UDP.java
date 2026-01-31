@@ -19,8 +19,19 @@ public class Servidor_1UDP {
 
                 socketUDP.receive(peticion);
 
+                DatagramPacket mensaje = new DatagramPacket(
+                        peticion.getData(), peticion.getLength(),
+                        peticion.getAddress(), peticion.getPort()
+                );
+
+                socketUDP.send(mensaje);
+
                 System.out.println("datos: " + new String(
-                        peticion.getData(),0, peticion.getLength()));
+                        peticion.getData(), 0, peticion.getLength()));
+                System.out.println("Puerto del cliente:" +
+                        peticion.getPort());
+                System.out.println("Tamaño de paquete"+
+                        peticion.getLength());
             }
 
 
