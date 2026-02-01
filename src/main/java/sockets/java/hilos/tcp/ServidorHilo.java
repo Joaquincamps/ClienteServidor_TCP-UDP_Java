@@ -2,6 +2,7 @@ package sockets.java.hilos.tcp;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 
 public class ServidorHilo extends Thread {
 
@@ -17,6 +18,8 @@ public class ServidorHilo extends Thread {
 
     @Override
     public void run() {
-
+        int opcion;
+        File f = new File("numeros.txt");
+        
     }
 }
