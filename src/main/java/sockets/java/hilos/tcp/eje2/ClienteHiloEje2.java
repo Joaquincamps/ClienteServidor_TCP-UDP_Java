@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class ClienteHiloEje2 {
 
-    private static final int PUERTO = 5000;
+    private static final int PUERTO = 5001;
     private static final String HOST = "127.0.0.1";
 
     public static void main(String[] args) {
@@ -49,7 +49,7 @@ public class ClienteHiloEje2 {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Disconnected from server.");
         }
 
     }

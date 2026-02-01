@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 
 public class ServidorHiloEje2 {
 
-    private static final int PUERTO = 5000;
+    private static final int PUERTO = 5001;
 
     public static void main(String[] args) {
         List<ClienteHandlerEje2Hilo> clientes = Collections.synchronizedList(new ArrayList<>());

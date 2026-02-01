@@ -34,7 +34,7 @@ public class ClienteHandlerEje2Hilo extends Thread {
                     for (ClienteHandlerEje2Hilo cli : clientes) {
                         if (cli != this) {
                             try {
-                                cli.salida.writeUTF("[" + nombre + "]: " + mensajes);
+                                cli.salida.writeUTF("[" + nombreUsuario + "]: " + mensajes);
                                 cli.salida.flush();
                             } catch (IOException io) {
                                 io.printStackTrace();
@@ -47,6 +47,7 @@ public class ClienteHandlerEje2Hilo extends Thread {
             e.printStackTrace();
         } finally {
             try {
+                clientes.remove(this);
                 if (socket != null) socket.close();
             } catch (IOException io) {
                 io.printStackTrace();
