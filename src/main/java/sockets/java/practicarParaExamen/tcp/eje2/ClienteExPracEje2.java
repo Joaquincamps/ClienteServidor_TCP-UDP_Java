@@ -59,47 +59,58 @@ Cliente desconectado
 
          */
         try {
-            Socket cliente = new Socket("localhost",PUERTO);
+            Socket cliente = new Socket("localhost", PUERTO);
             InetAddress ip = cliente.getInetAddress();
-            System.out.println("Conectado al servidor "+ip);
+            System.out.println("Conectado al servidor " + ip);
             DataInputStream entrada = new DataInputStream(cliente.getInputStream());
             DataOutputStream salida = new DataOutputStream(cliente.getOutputStream());
             Scanner sc = new Scanner(System.in);
-            while (true){
+            boolean verdad = true;
+            while (verdad) {
                 String menu = entrada.readUTF();
                 System.out.println(menu);
                 System.out.println("Seleccione una opción:");
                 int op = sc.nextInt();
+                sc.nextLine();
                 salida.writeUTF(String.valueOf(op));
+                salida.flush();
                 String textEnviar;
+                String textRecibido;
                 int numEnviar;
-                switch (op){
-                    case 1 :
+                switch (op) {
+                    case 1:
                         System.out.println("Introduce texto:");
-                        textEnviar= sc.nextLine();
+                        textEnviar = sc.nextLine();
                         salida.writeUTF(textEnviar);
+                        textRecibido = entrada.readUTF();
+                        System.out.println("Servidor responde: " + textRecibido);
                         break;
-                    case 2 :
+                    case 2:
                         System.out.println("Introduce texto:");
-                        textEnviar= sc.nextLine();
+                        textEnviar = sc.nextLine();
                         salida.writeUTF(textEnviar);
+                        textRecibido = entrada.readUTF();
+                        System.out.println("Servidor responde: " + textRecibido);
                         break;
-                    case 3 :
+                    case 3:
                         System.out.println("Introduce número:");
                         numEnviar = sc.nextInt();
                         salida.writeUTF(String.valueOf(numEnviar));
+                        textRecibido = entrada.readUTF();
+                        System.out.println("Servidor responde: " + textRecibido);
+                        break;
+                    case 4:
+                        System.out.println("Cliente desconectado");
                         cliente.close();
                         entrada.close();
                         salida.close();
-                        break;
-                    case 4 :
-                        System.out.println("Cliente desconectado");
+                        verdad = false;
                         break;
 
                 }
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
