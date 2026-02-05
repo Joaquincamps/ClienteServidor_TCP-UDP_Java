@@ -96,9 +96,6 @@ Servidor finalizado
                         verdad = false;
                         break;
                 }
-                socket.close();
-                entrada.close();
-                salida.close();
             }
 
 
