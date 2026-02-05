@@ -14,20 +14,19 @@ public class ClienteEje3Udp {
             DatagramSocket cliente = new DatagramSocket();
             InetAddress host = InetAddress.getByName("localhost");
             Scanner sc = new Scanner(System.in);
-            while (true){
+            while (true) {
                 System.out.println("Introduce un mensaje:");
                 String mensajeEnviado = sc.nextLine();
                 byte[] bufferSalida = mensajeEnviado.getBytes();
-                DatagramPacket peticion = new DatagramPacket(bufferSalida, bufferSalida.length,host,PUERTO);
+                DatagramPacket peticion = new DatagramPacket(bufferSalida, bufferSalida.length, host, PUERTO);
                 cliente.send(peticion);
 
-                System.out.println("Respuesta del servidor:");
                 byte[] bufferEntrada = new byte[10000];
-                DatagramPacket peticionEntrada = new DatagramPacket(bufferEntrada,bufferEntrada.length);
+                DatagramPacket peticionEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
                 cliente.receive(peticionEntrada);
-                System.out.println(new String(peticionEntrada.getData(),0,peticionEntrada.getLength()));
+                System.out.println("Respuesta del servidor:" + new String(peticionEntrada.getData(), 0, peticionEntrada.getLength()));
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
