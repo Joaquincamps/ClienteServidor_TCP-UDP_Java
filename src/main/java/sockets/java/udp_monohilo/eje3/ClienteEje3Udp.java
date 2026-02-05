@@ -10,7 +10,6 @@ public class ClienteEje3Udp {
     private static final int PUERTO = 7000;
 
     public static void main(String[] args) {
-        System.out.println();
         try {
             DatagramSocket cliente = new DatagramSocket();
             InetAddress host = InetAddress.getByName("localhost");
@@ -24,7 +23,6 @@ public class ClienteEje3Udp {
 
                 System.out.println("Respuesta del servidor:");
                 byte[] bufferEntrada = new byte[10000];
-
                 DatagramPacket peticionEntrada = new DatagramPacket(bufferEntrada,bufferEntrada.length);
                 cliente.receive(peticionEntrada);
                 System.out.println(new String(peticionEntrada.getData(),0,peticionEntrada.getLength()));
